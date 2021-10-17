@@ -4,33 +4,30 @@ import re
 
 try_again = "yes"
 
-
-def encrypt(plain_text, shift_amount):
+def caesar(plain_text, shift_amount, shift_direction):
   cipher_text = ""
-  
+
   for letter in plain_text:
     position = alphabet.index(letter)
-    new_position = (position + shift_amount) % 26
-    # %26 in case number >= 26 
+
+    if shift_direction == "encode":
+      new_position = (position + shift_amount) % 26
+
+    elif shift_direction == "decode":
+      new_position = position - shift_amount
+      while new_position < 0:
+        new_position += 26
+    else:
+      print("Error, please try again.")
+      break
+    
     cipher_text += alphabet[new_position]
-  
-  print(f"The encoded text is {cipher_text}")
 
-
-def decrypt(plain_text, shift_amount):
-  decipher_text = ""
-  
-  for letter in plain_text:
-    position = alphabet.index(letter)
-    new_position = position - shift_amount
-    while new_position < 0:
-      new_position += 26   
-    decipher_text+=alphabet[new_position]
-  
-  print(f"The decoded text is {decipher_text}")
+  print(f"The {shift_direction}d text is {cipher_text}")
 
 
 while try_again == "yes":
+
   direction =""
   text ="*"
   shift=""
@@ -49,17 +46,9 @@ while try_again == "yes":
     try:
       shift = int(input("Type the shift number:\n"))
     except:
-      print("Please enter only number.")
+      print("Please enter a number.")
       continue
 
-  if direction =="encode":
-    encrypt(text, shift)
-
-  elif direction =="decode":
-    decrypt(text, shift)
-
-  else:
-    print(f"Error, {direction} not found. Please restart the program.")
-    break
+  caesar(text, shift, direction)
 
   try_again = input("Would you like to try again? (yes / no)")
