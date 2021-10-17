@@ -7,22 +7,26 @@ try_again = "yes"
 
 def encrypt(plain_text, shift_amount):
   cipher_text = ""
+  
   for letter in plain_text:
     position = alphabet.index(letter)
     new_position = (position + shift_amount) % 26
     # %26 in case number >= 26 
     cipher_text += alphabet[new_position]
+  
   print(f"The encoded text is {cipher_text}")
 
 
 def decrypt(plain_text, shift_amount):
   decipher_text = ""
+  
   for letter in plain_text:
     position = alphabet.index(letter)
     new_position = position - shift_amount
-    if new_position < 0:
+    while new_position < 0:
       new_position += 26   
     decipher_text+=alphabet[new_position]
+  
   print(f"The decoded text is {decipher_text}")
 
 
