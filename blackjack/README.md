@@ -4,4 +4,6 @@ In this game, a player challenges the computer (the dealer) to a game of blackja
 
 To increase the difficulty of the game, the computer was given ability to 'see' the player's card. As such, the computer will always draw a card if it's value is below the 16 or below the player's value.
 
-In this version, the 5 card rule is not included.
+In this version, the 5 card rule is not implemented.
+
+The logo used in this program is taken from "100 Days of Code - The Complete Python Pro Bootcamp for 2021" by Angela Yu on Udemy.
